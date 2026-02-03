@@ -2,59 +2,6 @@
 <html>
 <head>
   <title>My Love ❤️</title>
-</head>
-<body style="text-align:center; background-color:pink;">
-  <h1>I Love You ❤️</h1>
-  <p>You are my everything 🫶</p>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>For You ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding-top: 100px;
-    }
-    h1 {
-      font-size: 40px;
-    }
-    p {
-      font-size: 22px;
-      margin: 15px 0;
-    }
-    button {
-      padding: 15px 25px;
-      border: none;
-      background: white;
-      color: #ff4d6d;
-      font-size: 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
-
-<h1>Hey ❤️ Thangameyy</h1>
-<p>You make my days brighter and my heart happier 💖</p>
-<p>Always choose you, forever 🫂</p>
-<p>Every moment with you is special 🌸</p>
-<p>My heart beats for you every second 💓</p>
-<p>You are my sunshine ☀️ and my moon 🌙</p>
-
-<button onclick="alert('I Love You 😘 Always!')">Touch Me</button>
-
-</body>
-</html><!DOCTYPE html>
-<html>
-<head>
-  <title>Love Surprise 💖</title>
   <style>
     body {
       margin: 0;
@@ -62,51 +9,112 @@
       background: #ffe6f0;
       font-family: Arial, sans-serif;
       overflow: hidden;
+      text-align: center;
       cursor: pointer;
-      position: relative;
     }
 
-    img {
+    #startScreen {
       position: absolute;
-      width: 200px;
-      border-radius: 15px;
-      transition: all 0.3s ease;
+      top: 40%;
+      width: 100%;
+    }
+
+    #loveMsg {
+      font-size: 24px;
+      color: #d63384;
+      margin-bottom: 15px;
+    }
+
+    #tapText {
+      font-size: 18px;
+      color: #ff4d6d;
+    }
+
+    #photoBox {
+      display: none;
+      position: absolute;
+    }
+
+    #photoBox img {
+      width: 150px;
+      border-radius: 12px;
+      display: block;
+      margin: auto;
+    }
+
+    #caption {
+      margin-top: 6px;
+      font-size: 14px;
+      color: #d63384;
     }
   </style>
 </head>
+
 <body onclick="nextPhoto()">
 
-<script>
-  const photos = [
-    "IMG-20250806-WA0060.jpg",
-    "IMG-20251111-WA0055.jpg",
-    "IMG-20251208-WA0030.jpg",
-    "IMG-20260113-WA0011.jpg",
-    "IMG-20260113-WA0023.jpg"
-  ];
+  <!-- START SCREEN -->
+  <div id="startScreen" onclick="startLove(event)">
+    <div id="loveMsg">
+      Nee illama na illa ❤️ <br>
+      En life-oda azhagana part nee dhaan 💕
+    </div>
+    <div id="tapText">Tap to Start 💖</div>
+  </div>
 
-  let index = 0;
-  let img = document.createElement("img");
-  document.body.appendChild(img);
+  <!-- PHOTO BOX -->
+  <div id="photoBox">
+    <img id="photo" src="">
+    <div id="caption"></div>
+  </div>
 
-  function nextPhoto() {
-    // set photo src
-    img.src = photos[index];
+  <!-- MUSIC -->
+  <audio id="song" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
 
-    // random position
-    let maxX = window.innerWidth - 200;
-    let maxY = window.innerHeight - 200;
-    let randomX = Math.floor(Math.random() * maxX);
-    let randomY = Math.floor(Math.random() * maxY);
+  <script>
+    const photos = [
+      { src: "IMG-20250806-WA0060.jpg", text: "Nee siricha pothum ❤️" },
+      { src: "IMG-20251111-WA0055.jpg", text: "Un kooda irukaradhu magic 💕" },
+      { src: "IMG-20251208-WA0030.jpg", text: "Every moment with you 😘" },
+      { src: "IMG-20260113-WA0011.jpg", text: "My heart chose you 💖" },
+      { src: "IMG-20260113-WA0023.jpg", text: "Forever us 🫂❤️" }
+    ];
 
-    img.style.left = randomX + "px";
-    img.style.top = randomY + "px";
+    let index = 0;
+    let started = false;
 
-    // next index (loop)
-    index++;
-    if(index >= photos.length) index = 0; // loop back to first
-  }
-</script>
+    function startLove(e) {
+      e.stopPropagation(); // avoid double click
+      document.getElementById("startScreen").style.display = "none";
+      document.getElementById("photoBox").style.display = "block";
+      document.getElementById("song").play();
+      started = true;
+      showPhoto();
+    }
+
+    function nextPhoto() {
+      if (!started) return;
+      index++;
+      if (index >= photos.length) index = 0;
+      showPhoto();
+    }
+
+    function showPhoto() {
+      const box = document.getElementById("photoBox");
+      const img = document.getElementById("photo");
+      const cap = document.getElementById("caption");
+
+      img.src = photos[index].src;
+      cap.innerText = photos[index].text;
+
+      let maxX = window.innerWidth - 170;
+      let maxY = window.innerHeight - 200;
+
+      box.style.left = Math.random() * maxX + "px";
+      box.style.top = Math.random() * maxY + "px";
+    }
+  </script>
 
 </body>
 </html>
