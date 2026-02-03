@@ -55,54 +55,84 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Love ❤️</title>
+  <title>Love 💖</title>
   <style>
     body {
-      background-color: #ffe6f0;
-      text-align: center;
+      margin: 0;
+      height: 100vh;
+      background: #ffe6f0;
       font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
     }
 
-    img {
-      width: 300px;
-      border-radius: 15px;
-      margin-top: 50px;
+    #startBox {
+      cursor: pointer;
     }
 
-    p {
-      font-size: 20px;
+    #loveText {
+      font-size: 24px;
       color: #d63384;
+      margin-bottom: 15px;
+    }
+
+    #tapText {
+      font-size: 18px;
+      color: #ff4d6d;
+    }
+
+    #photo {
+      display: none;
+      max-width: 85%;
+      border-radius: 20px;
     }
   </style>
 </head>
-<body onclick="nextPhoto()">
 
-  <h2>Touch the screen 💕</h2>
+<body>
 
-  <img id="photo" src="IMG-20250806-WA0060.jpg">
+  <!-- First Screen -->
+  <div id="startBox" onclick="startShow()">
+    <div id="loveText">
+      Nee illama na illa ❤️<br>
+      En life-oda best part nee dhaan 💕
+    </div>
+    <div id="tapText">Tap to Start 💖</div>
+  </div>
 
-  <p>Every touch shows our memory 💖</p>
+  <!-- Photo -->
+  <img id="photo" src="">
 
   <script>
-    let photos = [
+    const photos = [
       "IMG-20250806-WA0060.jpg",
       "IMG-20251111-WA0055.jpg",
       "IMG-20251208-WA0030.jpg",
       "IMG-20260113-WA0011.jpg",
-      "IMG-20260113-WA0023.jpg",
-      "IMG-20260113-WA0097.jpg",
-      "Snapchat-1724420110.jpg",
-      "Snapchat-1964444545.jpg",
-      "Snapchat-419796027.jpg",
-      "Snapchat-507318374.jpg"
+      "IMG-20260113-WA0023.jpg"
     ];
 
     let index = 0;
+    let started = false;
 
-    function nextPhoto() {
-      index = (index + 1) % photos.length;
-      document.getElementById("photo").src = photos[index];
+    function startShow() {
+      document.getElementById("startBox").style.display = "none";
+      document.getElementById("photo").style.display = "block";
+      document.getElementById("photo").src = photos[0];
+      started = true;
     }
+
+    document.body.addEventListener("click", function () {
+      if (!started) return;
+
+      index++;
+      if (index < photos.length) {
+        document.getElementById("photo").src = photos[index];
+      }
+    });
   </script>
 
 </body>
