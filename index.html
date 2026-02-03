@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Love 💖</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color:white;
+  text-align:center;
+}
+
+/* Intro */
+#intro{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:10;
+}
+
+#intro h1{
+  color:pink;
+  font-size:26px;
+  margin-bottom:20px;
+}
+
+#start{
+  padding:10px 25px;
+  border:none;
+  border-radius:30px;
+  background:hotpink;
+  color:white;
+  font-size:16px;
+}
+
+/* Photos */
+.photoBox{
+  position:absolute;
+  width:120px;
+  animation:pop 0.5s ease;
+}
+
+.photoBox img{
+  width:100%;
+  border-radius:15px;
+  box-shadow:0 0 15px hotpink;
+}
+
+.caption{
+  font-size:13px;
+  color:#ffc0cb;
+  margin-top:4px;
+}
+
+@keyframes pop{
+  from{opacity:0; transform:scale(0.5);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* Heart rain */
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="intro">
+  <h1>You are my forever 💖<br>My heart chose you</h1>
+  <button id="start">Tap to Start 💕</button>
+</div>
+
+<audio id="song" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const photos=[
+ {img:"photos/p1.jpg", text:"My favorite smile 💕"},
+ {img:"photos/p2.jpg", text:"With you always ❤️"},
+ {img:"photos/p3.jpg", text:"My peace 🫂"},
+ {img:"photos/p4.jpg", text:"Forever us 💖"},
+ {img:"photos/p5.jpg", text:"My happy place 🥺"}
+];
+
+let i=0;
+let started=false;
+
+document.getElementById("start").onclick=()=>{
+ document.getElementById("intro").style.display="none";
+ document.getElementById("song").play();
+ started=true;
+ startHearts();
+};
+
+document.body.addEventListener("click",(e)=>{
+ if(!started) return;
+
+ const p=photos[i];
+ i=(i+1)%photos.length;
+
+ const box=document.createElement("div");
+ box.className="photoBox";
+ box.style.left=Math.random()*(window.innerWidth-130)+"px";
+ box.style.top=Math.random()*(window.innerHeight-180)+"px";
+
+ box.innerHTML=`<img src="${p.img}"><div class="caption">${p.text}</div>`;
+ document.body.appendChild(box);
+
+ setTimeout(()=>box.remove(),4000);
+});
+
+function startHearts(){
+ setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+ },300);
+}
+</script>
+
+</body>
+</html>
