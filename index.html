@@ -51,89 +51,62 @@
 <button onclick="alert('I Love You 😘 Always!')">Touch Me</button>
 
 </body>
-</html>
-<!DOCTYPE html>
+</html><!DOCTYPE html>
 <html>
 <head>
-  <title>Love 💖</title>
+  <title>Love Surprise 💖</title>
   <style>
     body {
       margin: 0;
       height: 100vh;
       background: #ffe6f0;
       font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      text-align: center;
-    }
-
-    #startBox {
+      overflow: hidden;
       cursor: pointer;
+      position: relative;
     }
 
-    #loveText {
-      font-size: 24px;
-      color: #d63384;
-      margin-bottom: 15px;
-    }
-
-    #tapText {
-      font-size: 18px;
-      color: #ff4d6d;
-    }
-
-    #photo {
-      display: none;
-      max-width: 85%;
-      border-radius: 20px;
+    img {
+      position: absolute;
+      width: 200px;
+      border-radius: 15px;
+      transition: all 0.3s ease;
     }
   </style>
 </head>
+<body onclick="nextPhoto()">
 
-<body>
+<script>
+  const photos = [
+    "IMG-20250806-WA0060.jpg",
+    "IMG-20251111-WA0055.jpg",
+    "IMG-20251208-WA0030.jpg",
+    "IMG-20260113-WA0011.jpg",
+    "IMG-20260113-WA0023.jpg"
+  ];
 
-  <!-- First Screen -->
-  <div id="startBox" onclick="startShow()">
-    <div id="loveText">
-      Nee illama na illa ❤️<br>
-      En life-oda best part nee dhaan 💕
-    </div>
-    <div id="tapText">Tap to Start 💖</div>
-  </div>
+  let index = 0;
+  let img = document.createElement("img");
+  document.body.appendChild(img);
 
-  <!-- Photo -->
-  <img id="photo" src="">
+  function nextPhoto() {
+    // set photo src
+    img.src = photos[index];
 
-  <script>
-    const photos = [
-      "IMG-20250806-WA0060.jpg",
-      "IMG-20251111-WA0055.jpg",
-      "IMG-20251208-WA0030.jpg",
-      "IMG-20260113-WA0011.jpg",
-      "IMG-20260113-WA0023.jpg"
-    ];
+    // random position
+    let maxX = window.innerWidth - 200;
+    let maxY = window.innerHeight - 200;
+    let randomX = Math.floor(Math.random() * maxX);
+    let randomY = Math.floor(Math.random() * maxY);
 
-    let index = 0;
-    let started = false;
+    img.style.left = randomX + "px";
+    img.style.top = randomY + "px";
 
-    function startShow() {
-      document.getElementById("startBox").style.display = "none";
-      document.getElementById("photo").style.display = "block";
-      document.getElementById("photo").src = photos[0];
-      started = true;
-    }
-
-    document.body.addEventListener("click", function () {
-      if (!started) return;
-
-      index++;
-      if (index < photos.length) {
-        document.getElementById("photo").src = photos[index];
-      }
-    });
-  </script>
+    // next index (loop)
+    index++;
+    if(index >= photos.length) index = 0; // loop back to first
+  }
+</script>
 
 </body>
 </html>
