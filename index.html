@@ -1,120 +1,143 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>My Love ❤️</title>
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background: #ffe6f0;
-      font-family: Arial, sans-serif;
-      overflow: hidden;
-      text-align: center;
-      cursor: pointer;
-    }
+<meta charset="UTF-8">
+<title>My Love 💖</title>
 
-    #startScreen {
-      position: absolute;
-      top: 40%;
-      width: 100%;
-    }
+<style>
+body{
+  margin:0;
+  background:black;
+  overflow:hidden;
+  font-family: 'Segoe UI', sans-serif;
+  color:white;
+  text-align:center;
+}
 
-    #loveMsg {
-      font-size: 24px;
-      color: #d63384;
-      margin-bottom: 15px;
-    }
+/* Intro */
+#intro{
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:10;
+}
 
-    #tapText {
-      font-size: 18px;
-      color: #ff4d6d;
-    }
+#intro h1{
+  color:pink;
+  font-size:26px;
+  margin-bottom:20px;
+}
 
-    #photoBox {
-      display: none;
-      position: absolute;
-    }
+#start{
+  padding:10px 25px;
+  border:none;
+  border-radius:30px;
+  background:hotpink;
+  color:white;
+  font-size:16px;
+}
 
-    #photoBox img {
-      width: 150px;
-      border-radius: 12px;
-      display: block;
-      margin: auto;
-    }
+/* Photos */
+.photoBox{
+  position:absolute;
+  width:120px;
+  animation:pop 0.5s ease;
+}
 
-    #caption {
-      margin-top: 6px;
-      font-size: 14px;
-      color: #d63384;
-    }
-  </style>
+.photoBox img{
+  width:100%;
+  border-radius:15px;
+  box-shadow:0 0 15px hotpink;
+}
+
+.caption{
+  font-size:13px;
+  color:#ffc0cb;
+  margin-top:4px;
+}
+
+@keyframes pop{
+  from{opacity:0; transform:scale(0.5);}
+  to{opacity:1; transform:scale(1);}
+}
+
+/* Heart rain */
+.heart{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear forwards;
+}
+
+@keyframes fall{
+  to{
+    transform:translateY(100vh);
+    opacity:0;
+  }
+}
+</style>
 </head>
 
-<body onclick="nextPhoto()">
+<body>
 
-  <!-- START SCREEN -->
-  <div id="startScreen" onclick="startLove(event)">
-    <div id="loveMsg">
-      Nee illama na illa ❤️ <br>
-      En life-oda azhagana part nee dhaan 💕
-    </div>
-    <div id="tapText">Tap to Start 💖</div>
-  </div>
+<div id="intro">
+  <h1>You are my forever 💖<br>My heart chose you</h1>
+  <button id="start">Tap to Start 💕</button>
+</div>
 
-  <!-- PHOTO BOX -->
-  <div id="photoBox">
-    <img id="photo" src="">
-    <div id="caption"></div>
-  </div>
+<audio id="song" loop>
+  <source src="music/song.mp3" type="audio/mpeg">
+</audio>
 
-  <!-- MUSIC -->
-  <audio id="song" loop>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
+<script>
+const photos=[
+ {img:"photos/p1.jpg", text:"My favorite smile 💕"},
+ {img:"photos/p2.jpg", text:"With you always ❤️"},
+ {img:"photos/p3.jpg", text:"My peace 🫂"},
+ {img:"photos/p4.jpg", text:"Forever us 💖"},
+ {img:"photos/p5.jpg", text:"My happy place 🥺"}
+];
 
-  <script>
-    const photos = [
-      { src: "IMG-20250806-WA0060.jpg", text: "Nee siricha pothum ❤️" },
-      { src: "IMG-20251111-WA0055.jpg", text: "Un kooda irukaradhu magic 💕" },
-      { src: "IMG-20251208-WA0030.jpg", text: "Every moment with you 😘" },
-      { src: "IMG-20260113-WA0011.jpg", text: "My heart chose you 💖" },
-      { src: "IMG-20260113-WA0023.jpg", text: "Forever us 🫂❤️" }
-    ];
+let i=0;
+let started=false;
 
-    let index = 0;
-    let started = false;
+document.getElementById("start").onclick=()=>{
+ document.getElementById("intro").style.display="none";
+ document.getElementById("song").play();
+ started=true;
+ startHearts();
+};
 
-    function startLove(e) {
-      e.stopPropagation(); // avoid double click
-      document.getElementById("startScreen").style.display = "none";
-      document.getElementById("photoBox").style.display = "block";
-      document.getElementById("song").play();
-      started = true;
-      showPhoto();
-    }
+document.body.addEventListener("click",(e)=>{
+ if(!started) return;
 
-    function nextPhoto() {
-      if (!started) return;
-      index++;
-      if (index >= photos.length) index = 0;
-      showPhoto();
-    }
+ const p=photos[i];
+ i=(i+1)%photos.length;
 
-    function showPhoto() {
-      const box = document.getElementById("photoBox");
-      const img = document.getElementById("photo");
-      const cap = document.getElementById("caption");
+ const box=document.createElement("div");
+ box.className="photoBox";
+ box.style.left=Math.random()*(window.innerWidth-130)+"px";
+ box.style.top=Math.random()*(window.innerHeight-180)+"px";
 
-      img.src = photos[index].src;
-      cap.innerText = photos[index].text;
+ box.innerHTML=`<img src="${p.img}"><div class="caption">${p.text}</div>`;
+ document.body.appendChild(box);
 
-      let maxX = window.innerWidth - 170;
-      let maxY = window.innerHeight - 200;
+ setTimeout(()=>box.remove(),4000);
+});
 
-      box.style.left = Math.random() * maxX + "px";
-      box.style.top = Math.random() * maxY + "px";
-    }
-  </script>
+function startHearts(){
+ setInterval(()=>{
+  const h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*3)+"s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),6000);
+ },300);
+}
+</script>
 
 </body>
 </html>
