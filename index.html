@@ -175,3 +175,54 @@
 
 </body>
 </html>
+<script>
+  window.onload = function () {
+    document.getElementById("endScreen").style.display = "none";
+    document.getElementById("startScreen").style.display = "flex";
+  };
+
+  const photos = [
+    { src: "IMG-20250714-WA0046.jpg", text: "You are my favorite person ❤️" },
+    { src: "IMG-20250806-WA0060.jpg", text: "Every moment with you is magic ✨" },
+    { src: "IMG-20251111-WA0055.jpg", text: "My heart feels safe with you 🤍" },
+    { src: "IMG-20260113-WA0011.jpg", text: "I choose you, today and always 💕" },
+    { src: "IMG_20241023_151414_212.jpg", text: "Forever grateful for you 💖" }
+  ];
+
+  let index = 0;
+
+  function startLove() {
+    document.getElementById("startScreen").style.display = "none";
+    document.getElementById("mainContent").style.display = "block";
+    document.getElementById("song").play();
+    startHearts();
+  }
+
+  function showPhoto() {
+    if (index >= photos.length) {
+      document.getElementById("mainContent").style.display = "none";
+      document.getElementById("endScreen").style.display = "flex";
+      return;
+    }
+
+    const box = document.getElementById("photoBox");
+    document.getElementById("photo").src = photos[index].src;
+    document.getElementById("caption").innerText = photos[index].text;
+
+    box.style.display = "flex";
+    setTimeout(() => box.style.display = "none", 2000);
+    index++;
+  }
+
+  function startHearts() {
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "❤️";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 10 + "px";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }, 300);
+  }
+</script>
