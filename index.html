@@ -1,49 +1,85 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>For You ❤️</title>
+  <title>Happy Valentine’s Day ❤️</title>
 
   <style>
     body {
       margin: 0;
-      overflow: hidden;
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
+      background: black;
+      color: orange;
       font-family: Arial, sans-serif;
-      padding-top: 80px;
+      text-align: center;
+      overflow: hidden;
     }
 
     h1 {
-      font-size: 42px;
-    }
-
-    p {
-      font-size: 22px;
-      margin: 15px 0;
-    }
-
-    button {
-      padding: 15px 25px;
-      border: none;
-      background: white;
-      color: #ff4d6d;
-      font-size: 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      margin-top: 25px;
+      margin-top: 50px;
+      font-size: 36px;
+      letter-spacing: 1px;
       z-index: 2;
       position: relative;
     }
 
-    /* ❤️ Heart rain */
+    /* 💎 Diamond photos */
+    .diamond-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 90px);
+      gap: 35px;
+      justify-content: center;
+      margin-top: 50px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .diamond {
+      width: 90px;
+      height: 90px;
+      transform: rotate(45deg);
+      overflow: hidden;
+      border: 2px solid orange;
+      border-radius: 10px;
+    }
+
+    .diamond img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transform: rotate(-45deg) scale(1.2);
+    }
+
+    /* 💌 Button */
+    button {
+      margin-top: 40px;
+      padding: 10px 22px;
+      background: transparent;
+      border: 1px solid orange;
+      color: orange;
+      border-radius: 20px;
+      font-size: 16px;
+      cursor: pointer;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* 💌 Hidden message */
+    #loveMsg {
+      display: none;
+      margin: 40px 20px;
+      font-size: 18px;
+      line-height: 1.6;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* ❤️ Red heart rain */
     .heart {
       position: fixed;
       top: -10px;
       color: red;
-      font-size: 20px;
+      font-size: 18px;
       animation: fall linear infinite;
-      z-index: 1;
+      z-index: 0;
     }
 
     @keyframes fall {
@@ -56,33 +92,62 @@
 
 <body>
 
-  <h1>I Love You ❤️</h1>
-  <p>You are my everything 🫶</p>
-  <p>You make my days brighter and my heart happier 💖</p>
-  <p>Always choose you, forever 🫂</p>
-  <p>Every moment with you is special 🌸</p>
-  <p>My heart beats for you every second 💓</p>
-  <p>You are my sunshine ☀️ and my moon 🌙</p>
+  <!-- 💌 Heading -->
+  <h1>Happy Valentine’s Day<br>Thangameyy 🧡</h1>
 
-  <button onclick="alert('I Love You 😘 Always!')">
-    Touch Me
-  </button>
+  <!-- 💎 Photos -->
+  <div class="diamond-gallery">
+    <div class="diamond"><img src="IMG-20250714-WA0046.jpg"></div>
+    <div class="diamond"><img src="IMG-20250806-WA0060.jpg"></div>
+    <div class="diamond"><img src="IMG-20251111-WA0055.jpg"></div>
+    <div class="diamond"><img src="IMG-20260113-WA0011.jpg"></div>
+  </div>
 
+  <!-- 💌 Reveal button -->
+  <button onclick="showLove()">Tap Here 🧡</button>
+
+  <!-- 💌 Hidden message -->
+  <div id="loveMsg">
+    <p>
+      Nee en life-la vanthathuku apram  
+      ellame azhaga maariduchu 🧡  
+      Indha photos mattum illa…  
+      indha idhayamum unakku thaan 💓  
+      <br><br>
+      Innaiku Valentine’s Day…  
+      aana en love daily thaan.  
+      Sirippu, kanneer, success, failure —  
+      ellathulayum naan un kooda iruppen.  
+      <br><br>
+      Happy Valentine’s Day, Thangameyy 🧡  
+      <br>
+      Forever & always… you and me.
+    </p>
+  </div>
+
+  <!-- 🎵 Hidden background song -->
+  <audio id="bgMusic" autoplay loop>
+    <source src="ReelAudio-48.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- ❤️ Scripts -->
   <script>
+    function showLove() {
+      document.getElementById("loveMsg").style.display = "block";
+      document.getElementById("bgMusic").play();
+    }
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.classList.add("heart");
-      heart.innerHTML = "❤️";
-
+      heart.innerHTML = "❤";
       heart.style.left = Math.random() * 100 + "vw";
-      heart.style.fontSize = Math.random() * 20 + 15 + "px";
-      heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
       document.body.appendChild(heart);
 
       setTimeout(() => {
         heart.remove();
-      }, 5000);
+      }, 6000);
     }
 
     setInterval(createHeart, 300);
@@ -90,77 +155,3 @@
 
 </body>
 </html>
-<button onclick="goNextPage()">Touch Me</button>
-<script>
-  function goNextPage() {
-    window.location.href = "photos.html";
-  }
-</script>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Our Memories ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      text-align: center;
-      font-family: Arial, sans-serif;
-      color: white;
-      padding: 30px;
-    }
-
-    h1 {
-      margin-bottom: 20px;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-      margin-top: 20px;
-    }
-
-    .gallery img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-  </style>
-</head>
-
-<body>
-
-  <h1>Our Beautiful Memories ❤️</h1>
-  <p>Every photo holds my love for you 🫶</p>
-
-  <div class="gallery">
-    <img src="IMG-20250714-WA0046.jpg">
-    <img src="IMG-20250806-WA0060.jpg">
-    <img src="IMG-20251111-WA0055.jpg">
-    <img src="IMG-20260113-WA0011.jpg">
-  </div>
-
-</body>
-</html>
-<style>
-.diamond-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 20px;
-  justify-items: center;
-  margin-top: 40px;
-}
-
-.diamond-gallery img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  transform: rotate(45deg);
-  border-radius: 12px;
-}
-
-.diamond-gallery img:hover {
-  transform: rotate(45deg) scale(1.1);
-  transition: 0.3s;
-}
-</style>
