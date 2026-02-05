@@ -1,98 +1,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Love ❤️</title>
+  <title>For You ❤️</title>
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding-top: 80px;
+    }
+
+    h1 {
+      font-size: 42px;
+    }
+
+    p {
+      font-size: 22px;
+      margin: 15px 0;
+    }
+
+    button {
+      padding: 15px 25px;
+      border: none;
+      background: white;
+      color: #ff4d6d;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      margin-top: 25px;
+      z-index: 2;
+      position: relative;
+    }
+
+    /* ❤️ Heart rain */
+    .heart {
+      position: fixed;
+      top: -10px;
+      color: red;
+      font-size: 20px;
+      animation: fall linear infinite;
+      z-index: 1;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
 </head>
-<body style="text-align:center; background-color:pink;">
+
+<body>
+
   <h1>I Love You ❤️</h1>
   <p>You are my everything 🫶</p>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>For You ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding-top: 100px;
-    }
-    h1 {
-      font-size: 40px;
-    }
-    p {
-      font-size: 22px;
-      margin: 15px 0;
-    }
-    button {
-      padding: 15px 25px;
-      border: none;
-      background: white;
-      color: #ff4d6d;
-      font-size: 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
+  <p>You make my days brighter and my heart happier 💖</p>
+  <p>Always choose you, forever 🫂</p>
+  <p>Every moment with you is special 🌸</p>
+  <p>My heart beats for you every second 💓</p>
+  <p>You are my sunshine ☀️ and my moon 🌙</p>
 
-<h1>Hey ❤️Thangamey</h1>
-<p>You make my days brighter and my heart happier 💖</p>
-<p>Always choose you, forever 🫂</p>
-<p>Every moment with you is special 🌸</p>
-<p>My heart beats for you every second 💓</p>
-<p>You are my sunshine ☀️ and my moon 🌙</p>
+  <button onclick="alert('I Love You 😘 Always!')">
+    Touch Me
+  </button>
 
-<button onclick="alert('I Love You 😘 Always!')">Touch Me</button>
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "❤️";
 
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>For You ❤️</title>
-  <style>
-    body {
-      background: linear-gradient(to right, #ff758c, #ff7eb3);
-      color: white;
-      text-align: center;
-      font-family: Arial, sans-serif;
-      padding-top: 100px;
-    }
-    h1 {
-      font-size: 40px;
-    }
-    p {
-      font-size: 22px;
-      margin: 15px 0;
-    }
-    button {
-      padding: 15px 25px;
-      border: none;
-      background: white;
-      color: #ff4d6d;
-      font-size: 18px;
-      border-radius: 25px;
-      cursor: pointer;
-      margin-top: 20px;
-    }
-  </style>
-</head>
-<body>
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 20 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 2 + "s";
 
-<h1>Hey ❤️ Thangameyy</h1>
-<p>You make my days brighter and my heart happier 💖</p>
-<p>Always choose you, forever 🫂</p>
-<p>Every moment with you is special 🌸</p>
-<p>My heart beats for you every second 💓</p>
-<p>You are my sunshine ☀️ and my moon 🌙</p>
+      document.body.appendChild(heart);
 
-<button onclick="alert('I Love You 😘 Always!')">Touch Me</button>
+      setTimeout(() => {
+        heart.remove();
+      }, 5000);
+    }
+
+    setInterval(createHeart, 300);
+  </script>
 
 </body>
 </html>
