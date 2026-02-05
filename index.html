@@ -142,3 +142,25 @@
 
 </body>
 </html>
+<style>
+.diamond-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 40px;
+}
+
+.diamond-gallery img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  transform: rotate(45deg);
+  border-radius: 12px;
+}
+
+.diamond-gallery img:hover {
+  transform: rotate(45deg) scale(1.1);
+  transition: 0.3s;
+}
+</style>
