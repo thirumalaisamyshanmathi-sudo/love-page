@@ -90,3 +90,55 @@
 
 </body>
 </html>
+<button onclick="goNextPage()">Touch Me</button>
+<script>
+  function goNextPage() {
+    window.location.href = "photos.html";
+  }
+</script>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Our Memories ❤️</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #ff758c, #ff7eb3);
+      text-align: center;
+      font-family: Arial, sans-serif;
+      color: white;
+      padding: 30px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Our Beautiful Memories ❤️</h1>
+  <p>Every photo holds my love for you 🫶</p>
+
+  <div class="gallery">
+    <img src="photo1.jpg">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+
+</body>
+</html>
